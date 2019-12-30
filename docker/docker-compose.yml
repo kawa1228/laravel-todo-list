@@ -1,0 +1,18 @@
+version: '3'
+
+
+services:
+  laravel:
+    build: ./laravel
+    container_name: '${PROJECT}-laravel'
+    tty: true
+    ports:
+      - "8000:8000"
+    volumes:
+      - "../src/laravel:/opt/src"
+    environment:
+      # mysqlを使用する場合はコメントアウトを解除してください
+      # DB_DATABASE: "${PROJECT}"
+      # DB_USERNAME: "${MYSQL_USER}"
+      # DB_PASSWORD: "${MYSQL_PASSWORD}"
+      TZ: "Asia/Tokyo"
