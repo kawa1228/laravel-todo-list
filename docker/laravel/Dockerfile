@@ -14,8 +14,8 @@ RUN apt install -y unzip
 
 # mysql
 # mysqlを使う場合はコメントアウトを解除してください
-# RUN apt install -y default-mysql-client
-# RUN docker-php-ext-install pdo_mysql
+RUN apt install -y default-mysql-client
+RUN docker-php-ext-install pdo_mysql
 
 
 # memcached
