@@ -39,5 +39,6 @@ Route::post('/task', function (Request $request) {
 });
 
 Route::delete('/task/{task}', function (Task $task) {
-    //
+    $task->delete();
+    return redirect('/');
 });
