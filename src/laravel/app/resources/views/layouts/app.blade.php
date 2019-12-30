@@ -18,6 +18,10 @@
         .fa-btn {
             margin-right: 6px;
         }
+        .center {
+            display: flex;
+            justify-content: center;
+        }
     </style>
 </head>
 <body id="app-layout">

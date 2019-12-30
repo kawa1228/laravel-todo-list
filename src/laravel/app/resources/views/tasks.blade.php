@@ -61,7 +61,7 @@
                                     </td>
                                     <!-- 削除ボタン -->
                                     <td>
-                                        <form action="{{ url('task/' . $task->id) }}" method="POST">
+                                        <form class="center" action="{{ url('task/' . $task->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
 
