@@ -19,7 +19,17 @@ Route::get('/', function () {
 });
 
 Route::post('/task', function (Request $request) {
-    //
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|max:255',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('/')
+            ->withInput()
+            ->withErrors($validator);
+    }
+
+    // タスク作成処理
 });
 
 Route::delete('/task/{task}', function (Task $task) {
