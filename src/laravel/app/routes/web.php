@@ -14,6 +14,9 @@
 use App\Task;
 use Illuminate\Http\Request;
 
+/**
+ * タスクダッシュボード表示
+ */
 Route::get('/', function () {
     $tasks = Task::orderBy('created_at', 'asc')->get();
 
@@ -22,6 +25,9 @@ Route::get('/', function () {
     ]);
 });
 
+/**
+ * 新タスク追加
+ */
 Route::post('/task', function (Request $request) {
     $validator = Validator::make($request->all(), [
         'name' => 'required|max:255',
@@ -36,9 +42,15 @@ Route::post('/task', function (Request $request) {
     $task = new Task();
     $task->name = $request->name;
     $task->save();
+
+    return redirect('/');
 });
 
+/**
+ * タスク削除
+ */
 Route::delete('/task/{task}', function (Task $task) {
     $task->delete();
+
     return redirect('/');
 });
