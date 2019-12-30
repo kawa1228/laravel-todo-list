@@ -15,7 +15,11 @@ use App\Task;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
-    return view('tasks');
+    $tasks = Task::orderBy('created_at', 'asc')->get();
+
+    return view('tasks', [
+        'tasks' => $tasks
+    ]);
 });
 
 Route::post('/task', function (Request $request) {
@@ -29,7 +33,9 @@ Route::post('/task', function (Request $request) {
             ->withErrors($validator);
     }
 
-    // タスク作成処理
+    $task = new Task();
+    $task->name = $request->name;
+    $task->save();
 });
 
 Route::delete('/task/{task}', function (Task $task) {
