@@ -2,6 +2,26 @@ version: '3'
 
 
 services:
+
+  # データベース
+  mysql:
+    build: ./mysql
+    container_name: '${PROJECT}-mysql'
+    tty: true
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${PROJECT}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      BIND-ADDRESS: "0.0.0.0"
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - "./mysql/data:/var/lib/mysql"
+      - "./mysql/conf_d:/etc/mysql/conf.d"
+      - "./mysql/mysql_init:/docker-entrypoint-initdb.d"
+    ports:
+      - "3306:3306"
+
   laravel:
     build: ./laravel
     container_name: '${PROJECT}-laravel'
